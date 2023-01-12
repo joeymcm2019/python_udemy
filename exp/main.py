@@ -1,0 +1,1 @@
+print("Fuck python it fucking sucks")
