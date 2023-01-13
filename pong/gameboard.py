@@ -7,6 +7,7 @@ class Gameboard:
 
     def __init__(self):
         num_border_parts = int(round(screen_height/40,0))-1
+        middle_border_parts = []
         for i in range(0, num_border_parts, 1):
             middle_border_part = Turtle()
             middle_border_part.penup()
@@ -15,3 +16,5 @@ class Gameboard:
             xcor = middle_border_part.xcor()
             ycor = -screen_height/2+i*40+40
             middle_border_part.goto(x=xcor, y=ycor)
+            middle_border_parts.append(middle_border_part)
+        self.border_parts = middle_border_parts
