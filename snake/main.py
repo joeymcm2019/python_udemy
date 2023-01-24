@@ -4,6 +4,7 @@ from food import Food
 from score import Score
 from gameover import Gameover
 
+
 screen = Screen()
 screen.bgcolor("black")
 screen_size = 600
@@ -44,8 +45,8 @@ def move_snake():
         snake[i].setheading(directions[snake_part_direction[i]])
         if i != 0:
             snake_part_next_direction[i] = snake_part_direction[i-1]
-        snake[i].forward(snake_part_width)
-    time.sleep(.1)
+        snake[i].forward(snake_part_width)    
+    time.sleep(.075)
     screen.update()
     
 game_is_on = True
@@ -68,12 +69,15 @@ def set_direction_up():
         snake_part_next_direction[0] = "up"
 
 
+
+
 screen.listen()
 screen.onkey(key="Right", fun=set_direction_right)
 screen.onkey(key="d", fun=set_direction_down)
 screen.onkey(key="Up", fun=set_direction_up)
 screen.onkey(key="Left", fun=set_direction_left)
 screen.onkey(key="Down", fun=set_direction_down)
+
 
 food = Food()
 food_coord = (food.xcor(), food.ycor())
@@ -142,7 +146,8 @@ def clear_screen():
     screen.update()
 
 clear_screen()
-end_screen = Gameover(score.score)
+end_screen = Gameover(score.score, score.highscore)
+
 screen.update()
 
 screen.exitonclick()
