@@ -52,11 +52,15 @@ screen.onkeypress(key="Down", fun=move_player_two_paddle_down)
 ball = Ball()
 
 def collision_with_left_paddle():
-    if ball.distance(player_one_paddle) <= 50:
+    if ball.distance(player_one_paddle) <= 50 and ball.inCollision == False:
+        ball.inCollision = True
+        screen.ontimer(ball.end_collision, 100)
         return True
 
 def collision_with_right_paddle():
-    if ball.distance(player_two_paddle) <= 50:
+    if ball.distance(player_two_paddle) <= 50 and ball.inCollision == False:
+        ball.inCollision = True
+        screen.ontimer(ball.end_collision, 100)
         return True
 
 def award_point_to_player_one():
@@ -73,7 +77,7 @@ def write_instructions():
     instructions.append(Instruction("Player One: w=up s=down", 0))
     instructions.append(Instruction("Player Two: ↑=up ↓=down", 1))
     instructions.append(Instruction("Press space to play, enter to quit",2))
-    
+
 
 def clear_instructions():
     for instruction in instructions:
@@ -102,14 +106,15 @@ write_instructions()
 
 while (game_is_on):
     if (ball_is_in_play):
-        ball.move_ball()        
-    
+        ball.move_ball()
+
     ball_xcor = ball.xcor()
-   
+
     if (ball_xcor <= -screen_width/2+32):
         #print(ball.distance(player_one_paddle))
         if (ball_xcor >= -screen_width/2):
             if (collision_with_left_paddle()):
+                print("hit")
                 ball.bounce_off_left_paddle()
         elif (ball_xcor < -screen_width/2):
             award_point_to_player_two()
@@ -124,7 +129,7 @@ while (game_is_on):
             award_point_to_player_one()
             ball_is_in_play = False
             ball.reset_ball()
-            
+
 
     screen.update()
 

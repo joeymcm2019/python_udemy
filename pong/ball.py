@@ -1,5 +1,6 @@
 from turtle import Turtle
 from random import randint
+import time;
 
 directions = {
     "down-right": 45,
@@ -30,20 +31,21 @@ class Ball(Turtle):
         self.shapesize(stretch_wid=20/21, stretch_len=20/21)
         rand_direction = starting_directions[randint(0,3)]
         self.direction = rand_direction
-        self.ball_speed = 1.40 #how much we move the ball for each render
+        self.ball_speed = .07 #how much we move the ball for each render
+        self.inCollision = False;
 
     def reset_ball(self):
         self.goto(x=-40, y=0)
         rand_direction = starting_directions[randint(0,3)]
         self.direction = rand_direction
-        self.ball_speed = 1.20
+        self.ball_speed = .07
 
 
     def move_ball(self):
         xcor = self.xcor()
         ycor = self.ycor()
         ball_speed = self.ball_speed
-        
+
         #top & bottom wall collisions
         if (ycor >= screen_height/2-13):
             if (self.direction == directions["up-right"]):
@@ -70,6 +72,9 @@ class Ball(Turtle):
         elif self.direction == directions["up-right"]:
             self.goto(x=xcor+ball_speed, y=ycor+ball_speed)
 
+    def end_collision(self):
+      self.inCollision = False
+
 
     def bounce_off_left_paddle(self):
         if (self.direction == directions["down-left"]):
@@ -77,6 +82,8 @@ class Ball(Turtle):
         elif (self.direction == directions["up-left"]):
             self.direction = directions["up-right"]
         self.increase_ball_speed()
+        self.inCollision = True
+
 
     def bounce_off_right_paddle(self):
         if (self.direction == directions["up-right"]):
@@ -84,6 +91,7 @@ class Ball(Turtle):
         elif (self.direction == directions["down-right"]):
             self.direction = directions["down-left"]
         self.increase_ball_speed()
+        self.inCollision = True
 
     def increase_ball_speed(self):
-        self.ball_speed += .075
+        self.ball_speed += .01
