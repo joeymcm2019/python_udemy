@@ -17,7 +17,7 @@ snake_size = 5
 snake_part_direction = []
 snake_part_next_direction = []
 snake_part_width = 20
-
+snake_speed=20
 #initialize snake body
 for i in range (0, snake_size, 1):
     snake_part = Turtle()
@@ -29,7 +29,7 @@ for i in range (0, snake_size, 1):
     snake.append(snake_part)
     snake_part_direction.append("right")
     snake_part_next_direction.append("right")
-    
+
 
 directions = {
     "right": 0,
@@ -45,10 +45,9 @@ def move_snake():
         snake[i].setheading(directions[snake_part_direction[i]])
         if i != 0:
             snake_part_next_direction[i] = snake_part_direction[i-1]
-        snake[i].forward(snake_part_width)    
-    time.sleep(.075)
+        snake[i].forward(snake_speed)
     screen.update()
-    
+
 game_is_on = True
 
 
@@ -86,7 +85,7 @@ food_coord = (food.xcor(), food.ycor())
 def is_out_of_bounds(turtle):
     if abs(turtle.xcor()) >= screen_size/2 or abs(turtle.ycor()) >= screen_size/2:
         return True
-    
+
 def collectedFood():
     if (snake[0].distance(food) < 10):
         return True
@@ -100,7 +99,7 @@ def get_new_part_coord(xcor, ycor, snake_part_direction):
         xcor -= 20
     elif snake_part_direction == "left":
         xcor += 20
-    return (xcor, ycor)        
+    return (xcor, ycor)
 
 def make_snake_grow():
     snake_len = len(snake)
@@ -127,7 +126,8 @@ score = Score()
 
 while game_is_on:
     screen.update()
-    move_snake()
+    screen.ontimer(move_snake(), 100);
+
     if is_out_of_bounds(snake[0]):
         game_is_on = False
         pass
