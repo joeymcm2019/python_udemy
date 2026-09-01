@@ -4,7 +4,7 @@ class coffeeMachine:
         self.water = water #ml
         self.milk = milk #ml
         self.coffee = coffee #g
-        self.money = money 
+        self.money = money
         self.espresso = {
             "cost": 1.50,
             "water": 50,
@@ -29,7 +29,7 @@ class coffeeMachine:
         print(f"Milk: {self.milk}ml")
         print(f"Coffee: {self.coffee}g")
         print(f"Money: ${self.money}")
-    
+
     def promptUser(self):
         return input("What would you like? (espresso/latte/cappuccino): ").casefold()
 
@@ -88,7 +88,7 @@ class coffeeMachine:
         self.coffee -= coffee
         self.milk -= milk
         print(f"Here's your {drinkName}, enjoy!")
-    
+
     def runMachine(self):
         userResponse = ''
         while (userResponse != "off"):
@@ -99,9 +99,9 @@ class coffeeMachine:
                 self.report()
             else :
                 weCanMakeDrink = self.canWeMakeDrinkName(userResponse)
-                if weCanMakeDrink : 
+                if weCanMakeDrink :
                     self.takePayment(userResponse)
-              
+
 
     def getCost(self, drinkName):
         if (drinkName == "espresso"):
@@ -110,7 +110,7 @@ class coffeeMachine:
             return self.latte.get("cost")
         elif (drinkName == "cappuccino"):
             return self.cappuccino.get("cost")
-                
+
     def getDrinkObject(self, drinkName):
         if (drinkName == "espresso"):
             return self.espresso

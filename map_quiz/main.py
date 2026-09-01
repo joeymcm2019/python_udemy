@@ -42,7 +42,7 @@ import pandas
 
 # temp_monday = int(data[data.day == "Monday"].temp)
 # temp_monday_in_farenheight = round(temp_monday * 9 / 5 + 32, 2)
-# print("temp in farenheight, monday: ", temp_monday_in_farenheight) 
+# print("temp in farenheight, monday: ", temp_monday_in_farenheight)
 
 # data_dict_2 = {
 #     "students": ["Amy", "James", "Angela"],
@@ -54,27 +54,31 @@ import pandas
 from math import isnan
 
 data = pandas.read_csv("squirrel_data.csv")
-data_dict = data.to_dict()
 
-fur_types = data['Primary Fur Color'].to_list()
-unique_types = []
-count_types = []
-for fur in fur_types:
-    if not(unique_types.__contains__(fur)) and type(fur) == str:
-        unique_types.append(fur)
-    # elif len(unique_types) > 0 and fur == unique_types[0]:
-    #     count_types[0] += 1
-    # elif len(unique_types) > 1 and fur == unique_types[1]:
-    #     count_types[1] += 1
-    # elif len(unique_types) > 2 and fur == unique_types[2]:
-    #     count_types[2] += 1
-print(unique_types)
- 
-for fur_color in unique_types:
-  count_types.append(len(data[data['Primary Fur Color'] == fur_color]))
+# fur_types = data['Primary Fur Color'].to_list()
+# unique_types = []
+# count_types = []
+# for fur in fur_types:
+#     if fur not in unique_types and type(fur) == str:
+#         unique_types.append(fur)
+#     # elif len(unique_types) > 0 and fur == unique_types[0]:
+#     #     count_types[0] += 1
+#     # elif len(unique_types) > 1 and fur == unique_types[1]:
+#     #     count_types[1] += 1
+#     # elif len(unique_types) > 2 and fur == unique_types[2]:
+#     #     count_types[2] += 1
+# print(unique_types)
 
-data_squirrel = { "Fur Color": unique_types, 
-                  "Count": count_types}
+# for fur_color in unique_types:
+#   count_types.append(len(data[data['Primary Fur Color'] == fur_color]))
 
-new_data = pandas.DataFrame(data_squirrel)
+fur_counts = data['Primary Fur Color'].value_counts()
+print(fur_counts)
+
+# data_squirrel = { "Fur Color": unique_types,
+#                   "Count": count_types}
+
+# print(data_squirrel)
+
+new_data = pandas.DataFrame(fur_counts)
 new_data.to_csv("squirrel_count.csv")
