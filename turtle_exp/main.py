@@ -56,7 +56,7 @@ def getRandomDistance():
 
 def makeAlotOfShapes(turtle):
     for x in range(3, 11, 1):
-        randColor = getRandomColor()    
+        randColor = getRandomColor()
         makeShape(turtle, 100, x, randColor)
 
 def getRandomDirection():
@@ -76,7 +76,7 @@ def drawRandomWalk(turtle):
     for x in range(0,50,1):
         randColor = getRandomColor()
         randDist = getRandomDistance()
-        randDirection = getRandomDirection() 
+        randDirection = getRandomDirection()
         turtle.right(randDirection)
         turtle.color(randColor)
         turtle.forward(randDist)
