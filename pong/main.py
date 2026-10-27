@@ -7,8 +7,10 @@ from paddle import Paddle
 from scoreboard import Scoreboard
 
 screen = Screen()
-screen_width = 800
-screen_height = 600
+screen_width = 1000
+screen_height = 650
+# Allow Turtle to center its canvas when the window is larger than its scroll region.
+screen.getcanvas().config(confine=False)
 screen.setup(width=screen_width, height=screen_height)
 screen.bgcolor("black")
 screen.tracer(0)

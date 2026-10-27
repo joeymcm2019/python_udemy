@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["colorgram", "gameboard"]
+  "cSpell.words": [
+    "colorgram",
+    "gameboard"
+  ],
+  "python-envs.defaultEnvManager": "ms-python.python:system"
 }
