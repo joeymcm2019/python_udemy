@@ -3,5 +3,6 @@
     "colorgram",
     "gameboard"
   ],
-  "python-envs.defaultEnvManager": "ms-python.python:system"
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python.defaultInterpreterPath": "${workspaceFolder}/NATO-alphabet-start/.venv/bin/python"
 }
